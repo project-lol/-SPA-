@@ -63,4 +63,5 @@ SignUp 컴포넌트는 /web/signup 시에 렌더링되도록 한다.
 7.
 request 함수를 만든다. 
 request 함수를 통해서 json 데이터를 가지고 온다. 
+json 데이터를 HomePage에 넣어준다. 
 */
