@@ -26,13 +26,13 @@ export default class Header {
 
     const home = document.querySelector("#menu_home")
     home.addEventListener("click", () => {
-      const path = location.origin + "/web/"
+      const path = location.origin + "/"
       routeChange(path)
     })
 
     const signup = document.querySelector("#menu_signup")
     signup.addEventListener("click", () => {
-      const path = location.origin + "/web/signup"
+      const path = location.origin + "/signup"
       routeChange(path)
     })
   }

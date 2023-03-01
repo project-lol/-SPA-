@@ -1,6 +1,6 @@
 import Header from "./components/Header.js"
-import HomePage from "./page/HomePage.js"
-import SignupPage from "./page/SignupPage.js"
+import HomePage from "./pages/HomePage.js"
+import SignupPage from "./pages/SignupPage.js"
 import { init } from "./lib/router.js"
 
 export default function App($app) {
@@ -10,8 +10,8 @@ export default function App($app) {
     const { pathname } = location
 
     const mappedRoute = {
-      "/web/": () => new HomePage({ $target: this.target, initialState: null }),
-      "/web/signup": () =>
+      "/": () => new HomePage({ $target: this.target, initialState: null }),
+      "/signup": () =>
         new SignupPage({ $target: this.target, initialState: null }),
     }
 
