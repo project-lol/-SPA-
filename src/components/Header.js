@@ -1,39 +1,39 @@
-import { routeChange } from "../lib/router.js"
-
-export default class Header {
-  constructor({ $target, initialState }) {
-    this.header = document.createElement("header")
-    this.target = $target
-    this.target.appendChild(this.header)
-
-    this.state = initialState
-
-    this.render()
+class Header {
+  constructor($body) {
+    this.$body = $body
   }
 
-  setState(newState) {
-    this.state = newState
-    this.render()
+  createMenuElem(divClass, spanClass, spanId, menuText) {
+    const div = document.createElement("div")
+    div.setAttribute("class", divClass)
+
+    const span = document.createElement("span")
+    span.setAttribute("class", spanClass)
+    span.setAttribute("id", spanId)
+    span.appendChild(document.createTextNode(menuText))
+
+    div.appendChild(span)
+    return div
   }
 
   render() {
-    this.header.innerHTML = `<div class="header header_left">
-                                    <span class="menu_name" id="menu_home">HOME</span>
-                                </div>
-                                <div class="header header_right">
-                                    <span class="menu_name" id="menu_signup">SIGNUP</span>
-                                </div>`
+    const header = document.createElement("header")
+    const home_menu = this.createMenuElem(
+      "header header_left",
+      "menu_name",
+      "menu_home",
+      "HOME"
+    )
+    const signup_menu = this.createMenuElem(
+      "header header_right",
+      "menu_name",
+      "menu_signup",
+      "SIGNUP"
+    )
 
-    const home = document.querySelector("#menu_home")
-    home.addEventListener("click", () => {
-      const path = location.origin + "/"
-      routeChange(path)
-    })
-
-    const signup = document.querySelector("#menu_signup")
-    signup.addEventListener("click", () => {
-      const path = location.origin + "/signup"
-      routeChange(path)
-    })
+    header.appendChild(home_menu)
+    header.appendChild(signup_menu)
+    this.$body.appendChild(header)
   }
 }
+export default Header

@@ -4,6 +4,9 @@ class App {
     this.render()
   }
 
-  render() {}
+  render() {
+    const header = new Header(this.$body)
+    header.render()
+  }
 }
 export default App
