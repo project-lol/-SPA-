@@ -3,6 +3,9 @@ class HomePage {
     this.$main = $main
   }
 
-  render() {}
+  render() {
+    const title = new ContentTitle(this.$main, "Great PeoPle")
+    title.render()
+  }
 }
 export default HomePage

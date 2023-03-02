@@ -4,7 +4,9 @@ class App {
     this.render()
   }
 
-  render() {
+  async render() {
+    await setPersonalInfo()
+
     const header = new Header(this.$body)
     header.render()
 
