@@ -1,7 +1,22 @@
 export const cardDiv = index => {
   const card_div = document.createElement("div")
   card_div.setAttribute("idx", index)
-  card_div.setAttribute("class", "card")
+
+  let cardStorage = JSON.parse(localStorage.getItem("cardStatus"))
+  if (!cardStorage[index]) {
+    card_div.setAttribute("class", "card")
+    cardStorage.push({
+      idx: index,
+      status: "card",
+    })
+    localStorage.setItem("cardStatus", cardStorage[index].status)
+  } else {
+    card_div.setAttribute("class", cardStorage[index].status)
+  }
+
+  card_div.addEventListener("click", e => {
+    card_div.classList.toggle("is-flipped")
+  })
 
   return card_div
 }
