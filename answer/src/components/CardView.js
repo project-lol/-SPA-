@@ -15,6 +15,31 @@ class CardView {
       card.appendChild(cardPlane("back", info)) // 카드 뒷면의 요소
       containerDiv.appendChild(card)
     })
+
+    this.infiniteScroll(containerDiv, personalInfo)
+  }
+
+  infiniteScroll(container, localStorage) {
+    const io = new IntersectionObserver(
+      (entry, observer) => {
+        if (entry[0].isIntersecting) {
+          io.unobserve(entry[0].target)
+          const personalInfo = getPersonalInfo()
+          personalInfo.forEach((info, index) => {
+            const card = cardDiv(index)
+            card.appendChild(cardPlane("front", info))
+            card.appendChild(cardPlane("back", info))
+            container.appendChild(card)
+          })
+          localStorage.setItem("index", personalInfo.length)
+        }
+      },
+      {
+        threshold: 0.7,
+      }
+    )
+    const target = document.getElementById("card").lastChild
+    io.observe(target)
   }
 }
 
